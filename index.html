@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/calculadora.png">
+    <title>Calculadora IMC</title>
+</head>
+
+<body>
+    <div class="calculator">
+    <main>
+    <h1>Calculadora IMC</h1>
+    <h2>Índice de Massa Corporal</h2>
+
+    <label for="altura">Altura(cm):</label>
+    <input type="number" name="" id="altura">
+    <br>
+
+    <label for="peso">Peso(kg):</label>
+    <input type="number" name="" id="peso">
+    <br>
+
+    <button class="buttonImc">Calcular</button>
+    <p><span id="resultado"></span></p>
+    </main>
+    </div>
+    <script>
+        const buttonImc = document.querySelector('.buttonImc')
+        buttonImc.addEventListener('click', 
+            function calcularImc() {
+                const altura = (document.getElementById('altura').value)/100;
+                const peso = document.getElementById('peso').value;
+                const imc = peso/ (altura ** 2);
+                const resultado = document.getElementById('resultado');
+                const span = document.querySelector('span');
+                
+                if (altura === "" || peso === "") {
+                    span.classList.remove('correto');
+                    span.classList.add('incorreto')
+                    return  resultado.textContent = `Preencha as informações acima`;
+                }
+                if (altura <= 0 || peso <= 0) {
+                    span.classList.remove('correto');
+                    span.classList.add('incorreto');
+                    return  resultado.textContent = `Utilize números válidos`;
+                }
+                span.classList.remove('incorreto');
+                span.classList.add('correto');
+                resultado.textContent = `Seu Índice de massa corporal é: ${imc.toFixed(2)}`;
+        })
+    </script>
+
+</body>
+
+</html>
